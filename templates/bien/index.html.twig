@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}les biens les plus précieux{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('bien') }}
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="row">
+
+        {% for bien in biens %}
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    {% if bien.photoPrincipale is not null %}
+                        <img src="{{ asset('images/uploads/biens/' ~ bien.photoPrincipale) }}"
+                             class="card-img-top" alt="image du bien {{ bien.nom }}">
+                    {% endif %}
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ bien.nom }}</h5>
+                        <p class="card-text">{{ bien.prix }}€ - disponible le {{ bien.dateDispo | date('m/d/Y') }}</p>
+                        <a href="{{ path('app_bien_voir', {'id' : bien.id}) }}" class="btn btn-primary">Voir le bien</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block contenu %}
+
+    <a href="{{ path('app_admin_foodtruck_ajouter') }}" class="btn btn-primary">Ajouter un food truck</a>
+
+    <table class="table mt-5 ">
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Type de cuisine</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for foodtruck in foodtrucks %}
+
+            <tr>
+                <td>{{ foodtruck.nom }}</td>
+                <td>{{ foodtruck.typeCuisine }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_admin_foodtruck_modifier', { 'id' : foodtruck.id }) }}">modifier</a>
+                    <a class="btn btn-danger" onclick="return confirm('Êtes vous sûr ?')" href="{{ path('app_admin_foodtruck_supprimer', { 'id' : foodtruck.id }) }}">supprimer</a>
+                </td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

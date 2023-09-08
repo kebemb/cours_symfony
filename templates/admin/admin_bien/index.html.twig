@@ -1,0 +1,35 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block contenu %}
+
+    <a href="{{ path('app_admin_bien_ajouter') }}" class="btn btn-primary">Ajouter un bien</a>
+
+    <table class="table mt-5 ">
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Date de dispo</th>
+            <th scope="col">Ville</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for bien in biens %}
+
+            <tr>
+                <td>{{ bien.nom }}</td>
+                <td>{{ bien.prix }}</td>
+                <td>{{ bien.dateDispo | date('d/m/Y') }}</td>
+                <td>{{ bien.ville.nom }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_admin_bien_modifier', { 'id' : bien.id }) }}">modifier</a>
+                    <a class="btn btn-danger" onclick="return confirm('Êtes vous sûr ?')" href="{{ path('app_admin_bien_supprimer', { 'id' : bien.id }) }}">supprimer</a>
+                </td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

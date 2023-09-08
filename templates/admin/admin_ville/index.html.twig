@@ -1,0 +1,31 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block contenu %}
+
+    <a href="{{ path('app_admin_ville_ajouter') }}" class="btn btn-primary">Ajouter une ville</a>
+
+    <table class="table mt-5 ">
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Superficie</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for ville in villes %}
+
+            <tr>
+                <td>{{ ville.nom }}</td>
+                <td>{{ ville.superficie }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_admin_ville_modifier', { 'id' : ville.id }) }}">modifier</a>
+                    <a class="btn btn-danger" onclick="return confirm('Êtes vous sûr ?')" href="{{ path('app_admin_ville_supprimer', { 'id' : ville.id }) }}">supprimer</a>
+                </td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

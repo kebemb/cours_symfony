@@ -1,0 +1,30 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block contenu %}
+
+    <div class="container">
+
+        <h1 class="mb-4">{{ app.request.get('_route') == "app_admin_foodtruck_ajouter" ? 'Ajouter' : 'Modifier' }} un food truck</h1>
+
+        {{ form_start(form) }}
+
+            <div class="row">
+                <div class="col-4">
+                    {{ form_row(form.nom) }}
+                </div>
+                <div class="col-4">
+                    {{ form_row(form.typeCuisine) }}
+                </div>
+            </div>
+
+            {% if app.request.get('_route') == "app_admin_foodtruck_ajouter" %}
+                <button class="btn btn-success" type="submit">Ajouter</button>
+            {% else %}
+                <button class="btn btn-primary" type="submit">Modifier</button>
+            {% endif %}
+
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock %}

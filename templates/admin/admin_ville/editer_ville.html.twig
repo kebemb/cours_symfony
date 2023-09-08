@@ -1,0 +1,39 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block contenu %}
+
+    <div class="container">
+
+        <h1 class="mb-4">{{ app.request.get('_route') == "app_admin_ville_ajouter" ? 'Ajouter' : 'Modifier' }} une ville</h1>
+
+        {{ form_start(form) }}
+
+            <div class="row">
+                <div class="col-4">
+                    {{ form_row(form.nom) }}
+                </div>
+
+                <div class="col-4">
+                    {{ form_row(form.codePostal) }}
+                </div>
+
+                <div class="col-4">
+                    {{ form_row(form.superficie) }}
+                </div>
+
+                <div class="col-4">
+                    {{ form_row(form.foodTrucks) }}
+                </div>
+            </div>
+
+            {% if app.request.get('_route') == "app_admin_ville_ajouter" %}
+                <button class="btn btn-success" type="submit">Ajouter</button>
+            {% else %}
+                <button class="btn btn-primary" type="submit">Modifier</button>
+            {% endif %}
+
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock %}

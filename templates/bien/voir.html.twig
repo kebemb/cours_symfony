@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ bien.nom }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('bien') }}
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <h1>{{ bien.nom }} <i class="fa-solid fa-house"></i></h1>
+    <small>Disponible le : {{ bien.dateDispo | date('m/d/Y') }}</small>
+    <p>Au prix de {{ bien.prix }}€</p>
+
+</div>
+
+{% endblock %}
